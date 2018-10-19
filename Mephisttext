@@ -1,0 +1,9 @@
+Used below code to update PC bits + 128 bit EPC Data
+ 
+ReaderInstance.rfid.Options.TagWrite.accessPassword = uint.Parse(encodeParam.CurrentAccessPassword, System.Globalization.NumberStyles.HexNumber);
+ReaderInstance.rfid.Options.TagWrite.bank = CSLibrary.Constants.MemoryBank.BANK1; // EPC Bank
+ReaderInstance.rfid.Options.TagWrite.offset = 1;
+ReaderInstance.rfid.Options.TagWrite.count = 9;
+ReaderInstance.rfid.Options.TagWrite.pData = CSLibrary.Tools.Hex.ToUshorts("4000" + encodeParam.EPC);          // EPC length is 32 HEX Characters
+ 
+ReaderInstance.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_WRITE);
